@@ -1,0 +1,22 @@
+export enum Tile {
+    WITNESS = "Witness",
+    HIVE = "Hive",
+    GUARDIAN = "Guardian",
+    PYRAMID = "Pyramid",
+    TRAVELLER = "Traveller",
+    DRINK = "Drink",
+    STOP = "Stop",
+    GIVE = "Give",
+    WORSHIP = "Worship",
+    KILL = "Kill",
+    WORM = "Worm",
+    SAVATHÛN = "Savathûn",
+    DARKNESS = "Darkness",
+    LIGHT = "Light",
+}
+
+export enum TileLocation {
+    LEFT,
+    RIGHT,
+    MIDDLE
+}
