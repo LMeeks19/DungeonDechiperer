@@ -2,11 +2,8 @@ import { Tile } from "../enums/Tile";
 
 export interface Combination {
     firstTile: Tile
-    firstTileImage: string;
     secondTile: Tile;
-    secondTimeImage: string;
     thirdTile: Tile;
-    thirdTileImage: string;
     isTruth: boolean,
 }
 

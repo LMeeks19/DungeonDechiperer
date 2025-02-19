@@ -1,4 +1,4 @@
-import { MenuItem, Select } from "@mui/material";
+import { MenuItem, Select, Tooltip } from "@mui/material";
 import "./App.css";
 import NeutralGlyph from "./images/NeutralGlyph.jpg";
 import WitnessGlyph from "./images/WitnessGlyph.jpg";
@@ -22,51 +22,81 @@ import { CombinationWheelObject } from "./models/Combination";
 import { CalculateSolution } from "./methods/CombinationChecker";
 
 function App() {
-  const glyphsMenuItems = [
+  const glyphMenuItems = [
     <MenuItem key={Tile.NEUTRAL} value={Tile.NEUTRAL}>
-      <img src={NeutralGlyph} alt={NeutralGlyph} />
+      <Tooltip title={Tile.NEUTRAL} arrow>
+        <img src={NeutralGlyph} alt={NeutralGlyph} />
+      </Tooltip>
     </MenuItem>,
     <MenuItem key={Tile.WITNESS} value={Tile.WITNESS}>
-      <img src={WitnessGlyph} alt={NeutralGlyph} />
+      <Tooltip title={Tile.WITNESS} arrow>
+        <img src={WitnessGlyph} alt={WitnessGlyph} />
+      </Tooltip>
     </MenuItem>,
     <MenuItem key={Tile.HIVE} value={Tile.HIVE}>
-      <img src={HiveGlyph} alt={NeutralGlyph} />
+      <Tooltip title={Tile.HIVE} arrow>
+        <img src={HiveGlyph} alt={HiveGlyph} />
+      </Tooltip>
     </MenuItem>,
     <MenuItem key={Tile.GUARDIAN} value={Tile.GUARDIAN}>
-      <img src={GuardianGlyph} alt={NeutralGlyph} />
+      <Tooltip title={Tile.GUARDIAN} arrow>
+        <img src={GuardianGlyph} alt={GuardianGlyph} />
+      </Tooltip>
     </MenuItem>,
     <MenuItem key={Tile.PYRAMID} value={Tile.PYRAMID}>
-      <img src={PyramidGlyph} alt={NeutralGlyph} />
+      <Tooltip title={Tile.PYRAMID} arrow>
+        <img src={PyramidGlyph} alt={PyramidGlyph} />
+      </Tooltip>
     </MenuItem>,
     <MenuItem key={Tile.TRAVELLER} value={Tile.TRAVELLER}>
-      <img src={TravellerGlyph} alt={NeutralGlyph} />
+      <Tooltip title={Tile.TRAVELLER} arrow>
+        <img src={TravellerGlyph} alt={TravellerGlyph} />
+      </Tooltip>
     </MenuItem>,
     <MenuItem key={Tile.DRINK} value={Tile.DRINK}>
-      <img src={DrinkGlyph} alt={NeutralGlyph} />
+      <Tooltip title={Tile.DRINK} arrow>
+        <img src={DrinkGlyph} alt={DrinkGlyph} />
+      </Tooltip>
     </MenuItem>,
     <MenuItem key={Tile.STOP} value={Tile.STOP}>
-      <img src={StopGlyph} alt={NeutralGlyph} />
+      <Tooltip title={Tile.STOP} arrow>
+        <img src={StopGlyph} alt={StopGlyph} />
+      </Tooltip>
     </MenuItem>,
     <MenuItem key={Tile.GIVE} value={Tile.GIVE}>
-      <img src={GiveGlyph} alt={NeutralGlyph} />
+      <Tooltip title={Tile.GIVE} arrow>
+        <img src={GiveGlyph} alt={GiveGlyph} />
+      </Tooltip>
     </MenuItem>,
     <MenuItem key={Tile.WORSHIP} value={Tile.WORSHIP}>
-      <img src={WorshipGlyph} alt={NeutralGlyph} />
+      <Tooltip title={Tile.WORSHIP} arrow>
+        <img src={WorshipGlyph} alt={WorshipGlyph} />
+      </Tooltip>
     </MenuItem>,
     <MenuItem key={Tile.KILL} value={Tile.KILL}>
-      <img src={KillGlyph} alt={NeutralGlyph} />
+      <Tooltip title={Tile.KILL} arrow>
+        <img src={KillGlyph} alt={KillGlyph} />
+      </Tooltip>
     </MenuItem>,
     <MenuItem key={Tile.WORM} value={Tile.WORM}>
-      <img src={WormGlyph} alt={NeutralGlyph} />
+      <Tooltip title={Tile.WORM} arrow>
+        <img src={WormGlyph} alt={WormGlyph} />
+      </Tooltip>
     </MenuItem>,
     <MenuItem key={Tile.SAVATHÛN} value={Tile.SAVATHÛN}>
-      <img src={SavathunGlyph} alt={NeutralGlyph} />
+      <Tooltip title={Tile.SAVATHÛN} arrow>
+        <img src={SavathunGlyph} alt={SavathunGlyph} />
+      </Tooltip>
     </MenuItem>,
     <MenuItem key={Tile.DARKNESS} value={Tile.DARKNESS}>
-      <img src={DarknessGlyph} alt={NeutralGlyph} />
+      <Tooltip title={Tile.DARKNESS} arrow>
+        <img src={DarknessGlyph} alt={DarknessGlyph} />
+      </Tooltip>
     </MenuItem>,
     <MenuItem key={Tile.LIGHT} value={Tile.LIGHT}>
-      <img src={LightGlyph} alt={NeutralGlyph} />
+      <Tooltip title={Tile.LIGHT} arrow>
+        <img src={LightGlyph} alt={LightGlyph} />
+      </Tooltip>
     </MenuItem>,
   ];
 
@@ -82,18 +112,8 @@ function App() {
       thirdTile: Tile.NEUTRAL,
     },
   } as CombinationWheelObject);
-  const [solutionGlyphs, setSolutionGlyphs] = useState<CombinationWheelObject>({
-    left: {
-      firstTile: Tile.NEUTRAL,
-      secondTile: Tile.NEUTRAL,
-      thirdTile: Tile.NEUTRAL,
-    },
-    right: {
-      firstTile: Tile.NEUTRAL,
-      secondTile: Tile.NEUTRAL,
-      thirdTile: Tile.NEUTRAL,
-    },
-  } as CombinationWheelObject);
+  const [solutionGlyphs, setSolutionGlyphs] =
+    useState<CombinationWheelObject | null>(null);
 
   useEffect(() => {
     setSolutionGlyphs(CalculateSolution(selectedGlyphs));
@@ -124,7 +144,7 @@ function App() {
                   }
                   sx={{ svg: { display: "none" } }}
                 >
-                  {glyphsMenuItems.map((glyph) => {
+                  {glyphMenuItems.map((glyph) => {
                     return glyph;
                   })}
                 </Select>
@@ -143,7 +163,7 @@ function App() {
                   }
                   sx={{ svg: { display: "none" } }}
                 >
-                  {glyphsMenuItems.map((glyph) => {
+                  {glyphMenuItems.map((glyph) => {
                     return glyph;
                   })}
                 </Select>
@@ -162,7 +182,7 @@ function App() {
                   }
                   sx={{ svg: { display: "none" } }}
                 >
-                  {glyphsMenuItems.map((glyph) => {
+                  {glyphMenuItems.map((glyph) => {
                     return glyph;
                   })}
                 </Select>
@@ -181,7 +201,7 @@ function App() {
                   }
                   sx={{ svg: { display: "none" } }}
                 >
-                  {glyphsMenuItems.map((glyph) => {
+                  {glyphMenuItems.map((glyph) => {
                     return glyph;
                   })}
                 </Select>
@@ -200,7 +220,7 @@ function App() {
                   }
                   sx={{ svg: { display: "none" } }}
                 >
-                  {glyphsMenuItems.map((glyph) => {
+                  {glyphMenuItems.map((glyph) => {
                     return glyph;
                   })}
                 </Select>
@@ -219,7 +239,7 @@ function App() {
                   }
                   sx={{ svg: { display: "none" } }}
                 >
-                  {glyphsMenuItems.map((glyph) => {
+                  {glyphMenuItems.map((glyph) => {
                     return glyph;
                   })}
                 </Select>
@@ -230,74 +250,84 @@ function App() {
         <div className="box">
           <h2 className="title">Solution</h2>
           <div className="content-box">
-            <div className="input-grid">
-              <div className="grid-item">
-                <Select
-                  value={solutionGlyphs.left.firstTile}
-                  sx={{ svg: { display: "none" }, pointerEvents: "none" }}
-                  readOnly
-                >
-                  {glyphsMenuItems.map((glyph) => {
-                    return glyph;
-                  })}
-                </Select>
+            {solutionGlyphs !== null ? (
+              <div className="input-grid">
+                <div className="grid-item">
+                  {!solutionGlyphs.left?.isTruth && <div className="lie" />}
+                  <Select
+                    value={solutionGlyphs.left?.firstTile}
+                    sx={{ svg: { display: "none" }, pointerEvents: "none" }}
+                    readOnly
+                  >
+                    {glyphMenuItems.map((glyph) => {
+                      return glyph;
+                    })}
+                  </Select>
+                </div>
+                <div className="grid-item">
+                  {!solutionGlyphs.right?.isTruth && <div className="lie" />}
+                  <Select
+                    value={solutionGlyphs.right?.firstTile}
+                    sx={{ svg: { display: "none" }, pointerEvents: "none" }}
+                    readOnly
+                  >
+                    {glyphMenuItems.map((glyph) => {
+                      return glyph;
+                    })}
+                  </Select>
+                </div>
+                <div className="grid-item middle-left">
+                  {!solutionGlyphs.left?.isTruth && <div className="lie" />}
+                  <Select
+                    value={solutionGlyphs.left?.secondTile}
+                    sx={{ svg: { display: "none" }, pointerEvents: "none" }}
+                    readOnly
+                  >
+                    {glyphMenuItems.map((glyph) => {
+                      return glyph;
+                    })}
+                  </Select>
+                </div>
+                <div className="grid-item middle-right">
+                  {!solutionGlyphs.right?.isTruth && <div className="lie" />}
+                  <Select
+                    value={solutionGlyphs.right?.secondTile}
+                    sx={{ svg: { display: "none" }, pointerEvents: "none" }}
+                    readOnly
+                  >
+                    {glyphMenuItems.map((glyph) => {
+                      return glyph;
+                    })}
+                  </Select>
+                </div>
+                <div className="grid-item">
+                  {!solutionGlyphs.left?.isTruth && <div className="lie" />}
+                  <Select
+                    value={solutionGlyphs.left?.thirdTile}
+                    sx={{ svg: { display: "none" }, pointerEvents: "none" }}
+                    readOnly
+                  >
+                    {glyphMenuItems.map((glyph) => {
+                      return glyph;
+                    })}
+                  </Select>
+                </div>
+                <div className="grid-item">
+                  {!solutionGlyphs.right?.isTruth && <div className="lie" />}
+                  <Select
+                    value={solutionGlyphs.right?.thirdTile}
+                    sx={{ svg: { display: "none" }, pointerEvents: "none" }}
+                    readOnly
+                  >
+                    {glyphMenuItems.map((glyph) => {
+                      return glyph;
+                    })}
+                  </Select>
+                </div>
               </div>
-              <div className="grid-item">
-                <Select
-                  value={solutionGlyphs.right.firstTile}
-                  sx={{ svg: { display: "none" }, pointerEvents: "none" }}
-                  readOnly
-                >
-                  {glyphsMenuItems.map((glyph) => {
-                    return glyph;
-                  })}
-                </Select>
-              </div>
-              <div className="grid-item middle-left">
-                <Select
-                  value={solutionGlyphs.left.secondTile}
-                  sx={{ svg: { display: "none" }, pointerEvents: "none" }}
-                  readOnly
-                >
-                  {glyphsMenuItems.map((glyph) => {
-                    return glyph;
-                  })}
-                </Select>
-              </div>
-              <div className="grid-item middle-right">
-                <Select
-                  value={solutionGlyphs.right.secondTile}
-                  sx={{ svg: { display: "none" }, pointerEvents: "none" }}
-                  readOnly
-                >
-                  {glyphsMenuItems.map((glyph) => {
-                    return glyph;
-                  })}
-                </Select>
-              </div>
-              <div className="grid-item">
-                <Select
-                  value={solutionGlyphs.left.thirdTile}
-                  sx={{ svg: { display: "none" }, pointerEvents: "none" }}
-                  readOnly
-                >
-                  {glyphsMenuItems.map((glyph) => {
-                    return glyph;
-                  })}
-                </Select>
-              </div>
-              <div className="grid-item">
-                <Select
-                  value={solutionGlyphs.right.thirdTile}
-                  sx={{ svg: { display: "none" }, pointerEvents: "none" }}
-                  readOnly
-                >
-                  {glyphsMenuItems.map((glyph) => {
-                    return glyph;
-                  })}
-                </Select>
-              </div>
-            </div>
+            ) : (
+              <div>No Solution Found</div>
+            )}
           </div>
         </div>
       </div>
