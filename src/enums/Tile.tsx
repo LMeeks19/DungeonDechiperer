@@ -1,4 +1,5 @@
 export enum Tile {
+    NEUTRAL = "Neutral",
     WITNESS = "Witness",
     HIVE = "Hive",
     GUARDIAN = "Guardian",
