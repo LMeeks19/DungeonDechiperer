@@ -1,6 +1,6 @@
 {
+  "homepage": "http://lmeeks19.github.io/DungeonDechiperer",
   "name": "dungeon-decipherer",
-  "homepage": "http://LMeeks19.github.io/DungeonDecipherer",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
