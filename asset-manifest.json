@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/DungeonDecipherer/static/css/main.003a272b.css",
+    "main.js": "/DungeonDecipherer/static/js/main.0d045e00.js",
+    "static/js/453.2321a945.chunk.js": "/DungeonDecipherer/static/js/453.2321a945.chunk.js",
+    "index.html": "/DungeonDecipherer/index.html",
+    "main.003a272b.css.map": "/DungeonDecipherer/static/css/main.003a272b.css.map",
+    "main.0d045e00.js.map": "/DungeonDecipherer/static/js/main.0d045e00.js.map",
+    "453.2321a945.chunk.js.map": "/DungeonDecipherer/static/js/453.2321a945.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.003a272b.css",
+    "static/js/main.0d045e00.js"
+  ]
+}
