@@ -60,8 +60,9 @@
           gap: 1rem;
 
           .grid-item {
+            position: relative;
 
-            .lie {
+            .active {
               position: absolute;
               background-color: rgba(163, 123, 20, 0.25);
               box-shadow: 0 0 15px rgb(163, 123, 20);
@@ -120,6 +121,15 @@ img {
   }
 }
 
+.MuiCheckbox-root  {
+  padding: 0 !important;
+  color: grey !important;
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  z-index: 999 !important;
+}
+
 @media screen and (min-width: 768px) {
   .App {
     .content {
@@ -129,11 +139,11 @@ img {
         .content-box {
           .input-grid {
             .grid-item {
-              .lie {
+              .active {
                 width: 95.25px;
                 height: 95.25px;
                 box-shadow: 0 0 30px rgb(163, 123, 20);
-
+                pointer-events: none;
               }
 
               .MuiInputBase-root {
@@ -170,11 +180,10 @@ img {
         .content-box {
           .input-grid {
             .grid-item {
-              .lie {
+              .active {
                 width: 127px;
                 height: 127px;
                 box-shadow: 0 0 45px rgb(163, 123, 20);
-
               }
 
               .MuiInputBase-root {

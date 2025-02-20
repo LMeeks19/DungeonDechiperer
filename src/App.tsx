@@ -1,4 +1,4 @@
-import { MenuItem, Select, Tooltip } from "@mui/material";
+import { Checkbox, MenuItem, Select, Tooltip } from "@mui/material";
 import "./App.css";
 import NeutralGlyph from "./images/NeutralGlyph.jpg";
 import WitnessGlyph from "./images/WitnessGlyph.jpg";
@@ -131,6 +131,19 @@ function App() {
           <div className="content-box">
             <div className="input-grid">
               <div className="grid-item">
+                {selectedGlyphs.left?.fistTileOn && <div className="active" />}
+                <Checkbox
+                  checked={!!selectedGlyphs.left.fistTileOn}
+                  onChange={(e) =>
+                    setSelectedGlyphs({
+                      ...selectedGlyphs,
+                      left: {
+                        ...selectedGlyphs.left,
+                        fistTileOn: e.target.checked,
+                      },
+                    })
+                  }
+                />
                 <Select
                   value={selectedGlyphs.left.firstTile}
                   onChange={(e) =>
@@ -150,6 +163,25 @@ function App() {
                 </Select>
               </div>
               <div className="grid-item">
+                {selectedGlyphs.right?.fistTileOn && <div className="active" />}
+                <Checkbox
+                  checked={!!selectedGlyphs.right.fistTileOn}
+                  onChange={(e) =>
+                    setSelectedGlyphs({
+                      ...selectedGlyphs,
+                      right: {
+                        ...selectedGlyphs.right,
+                        fistTileOn: e.target.checked,
+                      },
+                    })
+                  }
+                  sx={{
+                    position: "absolute !important",
+                    zIndex: 999,
+                    top: 0,
+                    right: 0,
+                  }}
+                />
                 <Select
                   value={selectedGlyphs.right.firstTile}
                   onChange={(e) =>
@@ -169,6 +201,27 @@ function App() {
                 </Select>
               </div>
               <div className="grid-item middle-left">
+                {selectedGlyphs.left?.secondTileOn && (
+                  <div className="active" />
+                )}
+                <Checkbox
+                  checked={!!selectedGlyphs.left.secondTileOn}
+                  onChange={(e) =>
+                    setSelectedGlyphs({
+                      ...selectedGlyphs,
+                      left: {
+                        ...selectedGlyphs.left,
+                        secondTileOn: e.target.checked,
+                      },
+                    })
+                  }
+                  sx={{
+                    position: "absolute !important",
+                    zIndex: 999,
+                    top: 0,
+                    right: 0,
+                  }}
+                />
                 <Select
                   value={selectedGlyphs.left.secondTile}
                   onChange={(e) =>
@@ -188,6 +241,27 @@ function App() {
                 </Select>
               </div>
               <div className="grid-item middle-right">
+                {selectedGlyphs.right?.secondTileOn && (
+                  <div className="active" />
+                )}
+                <Checkbox
+                  checked={!!selectedGlyphs.right.secondTileOn}
+                  onChange={(e) =>
+                    setSelectedGlyphs({
+                      ...selectedGlyphs,
+                      right: {
+                        ...selectedGlyphs.right,
+                        secondTileOn: e.target.checked,
+                      },
+                    })
+                  }
+                  sx={{
+                    position: "absolute !important",
+                    zIndex: 999,
+                    top: 0,
+                    right: 0,
+                  }}
+                />
                 <Select
                   value={selectedGlyphs.right.secondTile}
                   onChange={(e) =>
@@ -207,6 +281,25 @@ function App() {
                 </Select>
               </div>
               <div className="grid-item">
+                {selectedGlyphs.left?.thirdTileOn && <div className="active" />}
+                <Checkbox
+                  checked={!!selectedGlyphs.left.thirdTileOn}
+                  onChange={(e) =>
+                    setSelectedGlyphs({
+                      ...selectedGlyphs,
+                      left: {
+                        ...selectedGlyphs.left,
+                        thirdTileOn: e.target.checked,
+                      },
+                    })
+                  }
+                  sx={{
+                    position: "absolute !important",
+                    zIndex: 999,
+                    top: 0,
+                    right: 0,
+                  }}
+                />
                 <Select
                   value={selectedGlyphs.left.thirdTile}
                   onChange={(e) =>
@@ -226,6 +319,27 @@ function App() {
                 </Select>
               </div>
               <div className="grid-item">
+                {selectedGlyphs.right?.thirdTileOn && (
+                  <div className="active" />
+                )}
+                <Checkbox
+                  checked={!!selectedGlyphs.right.thirdTileOn}
+                  onChange={(e) =>
+                    setSelectedGlyphs({
+                      ...selectedGlyphs,
+                      right: {
+                        ...selectedGlyphs.right,
+                        thirdTileOn: e.target.checked,
+                      },
+                    })
+                  }
+                  sx={{
+                    position: "absolute !important",
+                    zIndex: 999,
+                    top: 0,
+                    right: 0,
+                  }}
+                />
                 <Select
                   value={selectedGlyphs.right.thirdTile}
                   onChange={(e) =>
@@ -253,7 +367,7 @@ function App() {
             {solutionGlyphs !== null ? (
               <div className="input-grid">
                 <div className="grid-item">
-                  {!solutionGlyphs.left?.isTruth && <div className="lie" />}
+                  {!solutionGlyphs.left?.isTruth && <div className="active" />}
                   <Select
                     value={solutionGlyphs.left?.firstTile}
                     sx={{ svg: { display: "none" }, pointerEvents: "none" }}
@@ -265,7 +379,7 @@ function App() {
                   </Select>
                 </div>
                 <div className="grid-item">
-                  {!solutionGlyphs.right?.isTruth && <div className="lie" />}
+                  {!solutionGlyphs.right?.isTruth && <div className="active" />}
                   <Select
                     value={solutionGlyphs.right?.firstTile}
                     sx={{ svg: { display: "none" }, pointerEvents: "none" }}
@@ -277,7 +391,7 @@ function App() {
                   </Select>
                 </div>
                 <div className="grid-item middle-left">
-                  {!solutionGlyphs.left?.isTruth && <div className="lie" />}
+                  {!solutionGlyphs.left?.isTruth && <div className="active" />}
                   <Select
                     value={solutionGlyphs.left?.secondTile}
                     sx={{ svg: { display: "none" }, pointerEvents: "none" }}
@@ -289,7 +403,7 @@ function App() {
                   </Select>
                 </div>
                 <div className="grid-item middle-right">
-                  {!solutionGlyphs.right?.isTruth && <div className="lie" />}
+                  {!solutionGlyphs.right?.isTruth && <div className="active" />}
                   <Select
                     value={solutionGlyphs.right?.secondTile}
                     sx={{ svg: { display: "none" }, pointerEvents: "none" }}
@@ -301,7 +415,7 @@ function App() {
                   </Select>
                 </div>
                 <div className="grid-item">
-                  {!solutionGlyphs.left?.isTruth && <div className="lie" />}
+                  {!solutionGlyphs.left?.isTruth && <div className="active" />}
                   <Select
                     value={solutionGlyphs.left?.thirdTile}
                     sx={{ svg: { display: "none" }, pointerEvents: "none" }}
@@ -313,7 +427,7 @@ function App() {
                   </Select>
                 </div>
                 <div className="grid-item">
-                  {!solutionGlyphs.right?.isTruth && <div className="lie" />}
+                  {!solutionGlyphs.right?.isTruth && <div className="active" />}
                   <Select
                     value={solutionGlyphs.right?.thirdTile}
                     sx={{ svg: { display: "none" }, pointerEvents: "none" }}
