@@ -21,7 +21,7 @@
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "http://LMeeks19.github.io/DungeonDecipherer",
+  "homepage": "http://lmeeks19.github.io/DungeonDecipherer",
   "scripts": {
     "start": "react-scripts start",
     "predeploy" : "npm run build",
