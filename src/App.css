@@ -22,7 +22,6 @@
     flex-direction: column;
     gap: 2rem;
 
-
     .box {
       width: calc(100% - 2rem);
       color: white;
@@ -107,7 +106,7 @@ img {
 .MuiList-root {
   padding: 0 !important;
   display: grid !important;
-  grid-template-columns: repeat(5, 63.5px) !important;
+  grid-template-columns: repeat(3, 63.5px) !important;
 
   .MuiMenuItem-root {
     padding: 0 !important;
@@ -121,13 +120,21 @@ img {
   }
 }
 
-.MuiCheckbox-root  {
+.MuiCheckbox-root {
   padding: 0 !important;
-  color: grey !important;
   position: absolute !important;
+  color: grey !important;
   top: 0 !important;
   right: 0 !important;
   z-index: 999 !important;
+
+  &.Mui-checked {
+    color: rgb(163, 123, 20) !important;
+  }
+
+  .MuiSvgIcon-root {
+    font-size: 1rem !important;
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -166,6 +173,12 @@ img {
 
   .MuiList-root {
     grid-template-columns: repeat(5, 95.25px) !important;
+  }
+
+  .MuiCheckbox-root {  
+    .MuiSvgIcon-root {
+      font-size: 1.5rem !important;
+    }
   }
 }
 
@@ -206,5 +219,11 @@ img {
 
   .MuiList-root {
     grid-template-columns: repeat(5, 127px) !important;
+  }
+
+  .MuiCheckbox-root {  
+    .MuiSvgIcon-root {
+      font-size: 2rem !important;
+    }
   }
 }
