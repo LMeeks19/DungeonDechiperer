@@ -15,3 +15,9 @@ export enum Tile {
     DARKNESS = "Darkness",
     LIGHT = "Light",
 }
+
+export enum TileLocation {
+    LEFT = "Left",
+    MIDDLE = "Middle",
+    RIGHT = "Right"
+}

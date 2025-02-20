@@ -16,10 +16,14 @@ import SavathunGlyph from "./images/SavathunGlyph.jpg";
 import DarknessGlyph from "./images/DarknessGlyph.jpg";
 import LightGlyph from "./images/LightGlyph.jpg";
 
-import { Tile } from "./enums/Tile";
+import { Tile, TileLocation } from "./enums/Tile";
 import { useEffect, useState } from "react";
 import { CombinationWheelObject } from "./models/Combination";
-import { CalculateSolution } from "./methods/CombinationChecker";
+import {
+  CalculateSolution,
+  CalculateSteps,
+} from "./methods/CombinationChecker";
+import { Step } from "./models/Step";
 
 function App() {
   const glyphMenuItems = [
@@ -114,16 +118,21 @@ function App() {
   } as CombinationWheelObject);
   const [solutionGlyphs, setSolutionGlyphs] =
     useState<CombinationWheelObject | null>(null);
+  const [solutionSteps, setSolutionSteps] = useState<Step[]>([] as Step[]);
 
   useEffect(() => {
-    setSolutionGlyphs(CalculateSolution(selectedGlyphs));
+    var solution = CalculateSolution(selectedGlyphs);
+    setSolutionGlyphs(solution);
+
+    if (solution !== null)
+      setSolutionSteps(CalculateSteps(selectedGlyphs, solution));
   }, [selectedGlyphs]);
 
   return (
     <div className="App">
       <header className="App-header">
         <h3>Dungeon Decipherer</h3>
-        <p>Sundered Doctorine</p>
+        <p>Sundered Doctrine</p>
       </header>
       <div className="content">
         <div className="box">
@@ -131,15 +140,15 @@ function App() {
           <div className="content-box">
             <div className="input-grid">
               <div className="grid-item">
-                {selectedGlyphs.left?.fistTileOn && <div className="active" />}
+                {selectedGlyphs.left?.firstTileOn && <div className="active" />}
                 <Checkbox
-                  checked={!!selectedGlyphs.left.fistTileOn}
+                  checked={!!selectedGlyphs.left.firstTileOn}
                   onChange={(e) =>
                     setSelectedGlyphs({
                       ...selectedGlyphs,
                       left: {
                         ...selectedGlyphs.left,
-                        fistTileOn: e.target.checked,
+                        firstTileOn: e.target.checked,
                       },
                     })
                   }
@@ -163,15 +172,17 @@ function App() {
                 </Select>
               </div>
               <div className="grid-item">
-                {selectedGlyphs.right?.fistTileOn && <div className="active" />}
+                {selectedGlyphs.right?.firstTileOn && (
+                  <div className="active" />
+                )}
                 <Checkbox
-                  checked={!!selectedGlyphs.right.fistTileOn}
+                  checked={!!selectedGlyphs.right.firstTileOn}
                   onChange={(e) =>
                     setSelectedGlyphs({
                       ...selectedGlyphs,
                       right: {
                         ...selectedGlyphs.right,
-                        fistTileOn: e.target.checked,
+                        firstTileOn: e.target.checked,
                       },
                     })
                   }
@@ -445,6 +456,71 @@ function App() {
           </div>
         </div>
       </div>
+      {solutionGlyphs !== null && (
+        <div className="box">
+          <h2 className="title">Steps</h2>
+          <div className="content-box">
+            <div className="steps-grid">
+              <div className="step-item">
+                <h3 className="sub-title">Left</h3>
+                {solutionSteps.filter((ss) => ss.location === TileLocation.LEFT)
+                  .length === 0 ? (
+                  <div className="steps empty">No steps</div>
+                ) : (
+                  <div className="steps">
+                    {solutionSteps
+                      .filter((ss) => ss.location === TileLocation.LEFT)
+                      .map((s) => (
+                        <div key={s.step} className="step">
+                          <img src={s.image} alt="" />
+                          {s.step}
+                        </div>
+                      ))}
+                  </div>
+                )}
+              </div>
+              <div className="step-item">
+                <h3 className="sub-title">Middle</h3>
+                {solutionSteps.filter(
+                  (ss) => ss.location === TileLocation.MIDDLE
+                ).length === 0 ? (
+                  <div className="steps empty">No steps</div>
+                ) : (
+                  <div className="steps">
+                    {solutionSteps
+                      .filter((ss) => ss.location === TileLocation.MIDDLE)
+                      .map((s) => (
+                        <div key={s.step} className="step">
+                          <img src={s.image} alt="" />
+                          {s.step}
+                        </div>
+                      ))}
+                  </div>
+                )}
+              </div>
+              <div className="step-item">
+                <h3 className="sub-title">Right</h3>
+                {solutionSteps.filter(
+                  (ss) => ss.location === TileLocation.RIGHT
+                ).length === 0 ? (
+                  <div className="steps empty">No steps</div>
+                ) : (
+                  <div className="steps">
+                    {solutionSteps
+                      .filter((ss) => ss.location === TileLocation.RIGHT)
+                      .map((s) => (
+                        <div key={s.step} className="step">
+                          <img src={s.image} alt="" />
+                          {s.step}
+                        </div>
+                      ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

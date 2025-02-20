@@ -2,7 +2,7 @@ import { Tile } from "../enums/Tile";
 
 export interface Combination {
     firstTile: Tile
-    fistTileOn: boolean;
+    firstTileOn: boolean;
     secondTile: Tile;
     secondTileOn: boolean;
     thirdTile: Tile;
